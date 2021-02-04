@@ -19,12 +19,19 @@ public class Recursion{
       }
       return count;
     }
-
   }
 
-  //public static double sqrt(double n){}
+  public static double sqrt(double n){
+    if (n < 0) return Double.NaN;
+    if (n == 0) return 0.0;
+    return sqrt(n, 1);
+  }
 
-  public static void main(String[] args) {
-    System.out.println(countNoDoubleLetterWords(7, ""));
+  public static double sqrt(double n, double n_){
+    if (Math.abs((n_*n_ / n)-1) <= 0.00001){
+      return n_;
+    }else{
+      return sqrt(n, (n/n_ + n_)/2);
+    }
   }
 }

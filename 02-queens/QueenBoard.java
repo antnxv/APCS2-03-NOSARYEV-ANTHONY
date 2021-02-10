@@ -24,7 +24,16 @@ public class QueenBoard{
     return true;
   }
 
-  //private void removeQueen(int r, int c){}
+  public void removeQueen(int r, int c){
+    for (int y = 0; y < board.length; y ++){
+      for (int x = r; x < board.length; x ++){
+        if (x == r || y == c || Math.abs(x-r) == Math.abs(y-c)){
+          board[y][x] --;
+        }
+      }
+    }
+    board[c][r] = 0;
+  }
 
   //public boolean solve(){}
 

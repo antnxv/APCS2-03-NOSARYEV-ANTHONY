@@ -19,5 +19,15 @@ public class QueenBoard{
 
   //public int countSolutions(){}
 
-  //public String toString()
+  public String toString(){
+    String str = "";
+    for (int[] i: board){
+      for (int j: i){
+        if (j == 0) str += "_ ";
+        else str += "Q ";
+      }
+      str += "\n";
+    }
+    return str;
+  }
 }

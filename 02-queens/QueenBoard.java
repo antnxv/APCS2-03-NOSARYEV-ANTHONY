@@ -36,11 +36,11 @@ public class QueenBoard{
   }
 
   public boolean solve(){
+    if (board[0][0] != 0) throw new IllegalStateException("board must be empty");
     return solve(0, 0);
   }
 
   public boolean solve(int r, int c){
-    if (board[0][0] != 0) throw new IllegalStateException("board must be empty");
     if (c == board.length) return true;
     if (r == board.length){
       if (c == 0){
@@ -63,14 +63,39 @@ public class QueenBoard{
     return solve(r+1, c);
   }
 
-  //public int countSolutions(){}
+  public int countSolutions(){
+    if (board[0][0] != 0) throw new IllegalStateException("board must be empty");
+    return countSolutions(0, 0, 0);
+  }
+
+  public int countSolutions(int r, int c, int t){
+    if (c == board.length){
+      return 1;
+    }
+    if (r == board.length){
+      if (c == 0){
+        for (int[] y: board){
+          for (int x: y){
+            x = 0;
+          }
+        }
+      }
+      return t;
+    }
+    if (addQueen(r, c)){
+      t += countSolutions(0, c+1, 0);
+      removeQueen(r, c);
+    }
+    t += countSolutions(r+1, c, 0);
+    return t;
+  }
 
   public String toString(){
     String str = "";
     for (int[] i: board){
       for (int j: i){
         if (j == -1) str += "Q ";
-        //else if (j > 0) str += j + " ";
+        //else if (j > 0) str += j + " "; // debug: shows blockage multitude
         else str += "_ ";
       }
       str += "\n";

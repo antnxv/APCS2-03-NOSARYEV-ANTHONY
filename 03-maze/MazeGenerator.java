@@ -9,9 +9,9 @@ public class MazeGenerator{
         if (j+1 > cols) cols = j+1;
       }
     }
-    generate(maze, rows, cols);
+    generate(maze, rows, cols, rows/2, cols/2);
   }
-  public static void generate(char[][] maze, int rows,  int cols){
-    
+  public static void generate(char[][] maze, int rows,  int cols, int startrow, int startcol){
+
   }
 }

@@ -2,6 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class USACO{
+  
   public int bronze(String filename) throws FileNotFoundException{
     Scanner data = new Scanner(new File(filename));
     int R = data.nextInt();

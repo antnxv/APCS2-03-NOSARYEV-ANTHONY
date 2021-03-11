@@ -15,7 +15,6 @@ public class Quick{
     }else{
       j = hi;
     }
-    System.out.println("data["+j+"] = "+data[j]);
     for (int i = lo; i <= hi; i ++){
       if (i < j && (data[i] > data[j] || (data[i] == data[j] && Math.random()*2 == 0))){
         int temp = data[i];

@@ -50,13 +50,13 @@ public class Quick{
       for (int i = 0; i < newdata.length; i ++){
         newdata[i] = data[gt+1+i];
       }
-      return quickselect(newdata, k-(lt+1));
+      return quickselectDutch(newdata, k-(lt+1));
     }else{
       int[] newdata = new int[lt];
       for (int i = 0; i < newdata.length; i ++){
         newdata[i] = data[i];
       }
-      return quickselect(newdata, k);
+      return quickselectDutch(newdata, k);
     }
   }
 

@@ -1,4 +1,16 @@
 public class Quick{
+
+  public static void quicksort(int[] data){
+    quicksort(data, 0, data.length-1);
+  }
+  public static void quicksort(int[] data, int lo, int hi){
+    if (hi-lo > 1){
+      int j = partition(data, lo, hi);
+      quicksort(data, lo, j-1);
+      quicksort(data, j+1, hi);
+    }
+  }
+
   public static int quickselect(int[] data, int k){
     int j = partition(data, 0, data.length-1);
     if (j == k) return data[j];

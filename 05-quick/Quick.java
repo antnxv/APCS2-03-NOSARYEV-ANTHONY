@@ -1,6 +1,20 @@
 public class Quick{
   public static int quickselect(int[] data, int k){
-    return 0;
+    int j = partition(data, 0, data.length-1);
+    if (j == k) return data[j];
+    if (j < k){
+      int [] newdata = new int[data.length-(j+1)];
+      for (int i = 0; i < newdata.length; i ++){
+        newdata[i] = data[j+1+i];
+      }
+      return quickselect(newdata, k-(j+1));
+    }else{
+      int[] newdata = new int[j];
+      for (int i = 0; i < newdata.length; i ++){
+        newdata[i] = data[i];
+      }
+      return quickselect(newdata, k);
+    }
   }
 
   public static int partition(int[] data, int lo, int hi){

@@ -40,6 +40,26 @@ public class Quick{
     }
   }
 
+  public static int quickselectDutch(int[] data, int k){
+    int[] j = partitionDutch(data, 0, data.length-1);
+    int lt = j[0];
+    int gt = j[1];
+    if (lt <= k && gt >= k) return data[k];
+    if (gt < k){
+      int [] newdata = new int[data.length-(gt+1)];
+      for (int i = 0; i < newdata.length; i ++){
+        newdata[i] = data[gt+1+i];
+      }
+      return quickselect(newdata, k-(lt+1));
+    }else{
+      int[] newdata = new int[lt];
+      for (int i = 0; i < newdata.length; i ++){
+        newdata[i] = data[i];
+      }
+      return quickselect(newdata, k);
+    }
+  }
+
   public static int partition(int[] data, int lo, int hi){
     int j = antmed(data, lo, (lo + hi)/2, hi);
     for (int i = lo; i <= hi; i ++){

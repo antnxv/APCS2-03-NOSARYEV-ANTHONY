@@ -3,7 +3,7 @@ import java.io.*;
 
 public class USACO{
 
-  public int bronze(String filename) throws FileNotFoundException{
+  public static int bronze(String filename) throws FileNotFoundException{
     Scanner data = new Scanner(new File(filename));
     int R = data.nextInt();
     int C = data.nextInt();
@@ -46,7 +46,7 @@ public class USACO{
     return S*5184; // 36 sq ft in sq inches
   }
 
-  public long silver(String filename) throws FileNotFoundException{
+  public static long silver(String filename) throws FileNotFoundException{
     Scanner data = new Scanner(new File(filename));
     int N = data.nextInt();
     int M = data.nextInt();

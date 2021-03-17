@@ -4,7 +4,7 @@ public class Quick{
     quicksort(data, 0, data.length-1);
   }
   public static void quicksort(int[] data, int lo, int hi){
-    if (hi-lo > 1){
+    if (hi > lo){
       int j = partition(data, lo, hi);
       quicksort(data, lo, j-1);
       quicksort(data, j+1, hi);
@@ -15,7 +15,7 @@ public class Quick{
     quicksortDutch(data, 0, data.length-1);
   }
   public static void quicksortDutch(int[] data, int lo, int hi){
-    if (hi-lo > 1){
+    if (hi > lo){
       int[] j = partitionDutch(data, lo, hi);
       quicksortDutch(data, lo, j[0]-1);
       quicksortDutch(data, j[1]+1, hi);
@@ -61,19 +61,19 @@ public class Quick{
   }
 
   public static int partition(int[] data, int lo, int hi){
-    int j = antmed(data, lo, (lo + hi)/2, hi);
+    int j = (int) (lo + Math.random()*(hi-lo+1));
     for (int i = lo; i <= hi; i ++){
-      if (i < j && (data[i] > data[j] || (data[i] == data[j] && Math.random()*2 == 0))){
-        int temp = data[i];
-        data[i] = data[j];
-        data[j] = temp;
+      if (i < j && (data[i] > data[j] || (data[i] == data[j] && ((int) (Math.random()*2) == 0)))){
+        int temp = data[j];
+        data[j] = data[i];
+        data[i] = temp;
         j = i;
       }
-      else if (i > j && (data[i] < data[j] || (data[i] == data[j] && Math.random()*2 == 0))){
-        int temp = data[i];
+      else if (i >= j && data[i] < data[j]){
+        int temp = data[j];
+        data[j] = data[i];
         data[i] = data[j+1];
-        data[j+1] = data[j];
-        data[j] = temp;
+        data[j+1] = temp;
         j ++;
       }
     }
@@ -81,24 +81,14 @@ public class Quick{
   }
 
   public static int[] partitionDutch(int[] data, int lo, int hi){
-    int lt = antmed(data, lo, (lo + hi)/2, hi);
-    int gt = lt;
-    for (int i = lo; i <= hi; i ++){
-      if (i < lt && data[i] >= data[lt]){
-        int temp = data[lt-1];
-        data[lt-1] = data[gt];
-        data[gt] = data[i];
-        data[i] = temp;
-        lt --;
-        if (data[gt] != data[lt]){
-          gt --;
-        }
-      }
-      else if (i > gt && data[i] <= data[gt]){
-        int temp = data[i];
+    int lt = lo;
+    int gt = lo;
+    for (int i = lo+1; i <= hi; i ++){
+      if (data[i] <= data[gt]){
+        int temp = data[lt];
+        data[lt] = data[i];
         data[i] = data[gt+1];
-        data[gt+1] = data[lt];
-        data[lt] = temp;
+        data[gt+1] = temp;
         gt ++;
         if (data[lt] != data[gt]){
           lt ++;
@@ -107,19 +97,5 @@ public class Quick{
     }
     int[] sub = {lt, gt};
     return sub;
-  }
-
-  public static int antmed(int[] data, int lo, int mid, int hi){
-    int j;
-    if (data[mid] > data[lo] && data[mid] < data[hi]
-       || data[mid] < data[lo] && data[mid] > data[hi]){
-      j = mid;
-    }else if(data[lo] > data[mid] && data[lo] < data[hi]
-       || data[lo] < data[mid] && data[lo] > data[hi]){
-      j = lo;
-    }else{
-      j = hi;
-    }
-    return j;
   }
 }

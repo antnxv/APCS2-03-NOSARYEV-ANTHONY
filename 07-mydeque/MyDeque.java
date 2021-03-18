@@ -6,8 +6,8 @@ public class MyDeque<E>{
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[10];
     data = d;
-    start = 9;
-    end = 8;
+    start = 0;
+    end = 9;
     size = 0;
   }
 
@@ -15,8 +15,8 @@ public class MyDeque<E>{
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[initialCapacity];
     data = d;
-    start = initialCapacity-1;
-    end = initialCapacity-2;
+    start = 0;
+    end = initialCapacity-1;
     size = 0;
   }
 

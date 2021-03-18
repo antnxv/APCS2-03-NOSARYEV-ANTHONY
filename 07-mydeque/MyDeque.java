@@ -1,21 +1,21 @@
 public class MyDeque<E>{
   private E[] data;
-  private int size, start, end;
+  private int size, start, end; // start and end represent next spots
 
   public MyDeque(){
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[10];
     data = d;
-    end = 9;
-    start = size = 0;
+    start = 9;
+    end = size = 0;
   }
 
   public MyDeque(int initialCapacity){
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[initialCapacity];
     data = d;
-    end = initialCapacity-1;
-    start = size = 0;
+    start = initialCapacity-1;
+    end = size = 0;
   }
 
   public int size(){
@@ -23,60 +23,56 @@ public class MyDeque<E>{
   }
 
   public String toString(){
-
+    if (size == 0) return "{}";
+    String str = "{";
+    for (int i = start+1; i < data.length; i ++){
+      str += data[i]+", ";
+    }
+    for (int i = 0; i < end; i ++){
+      str += data[i]+", ";
+    }
+    return str.substring(0, str.length()-2)+"}";
   }
 
   public void addFirst(E element){
     size ++;
-    if (start == 0){
-      data[data.length-1] = element;
-      start = data.length-1;
-    }else{
-      data[start-1] = element;
-      start --;
-    }
+    data[start] = element;
+    start --;
   }
 
   public void addLast(E element){
     size ++;
-    if (end == data.length-1){
-      data[0] = element;
-      end = 0;
-    }else{
-      data[end+1] = element;
-      end ++;
-    }
+    data[end] = element;
+    end ++;
   }
 
   public E removeFirst(){
     size --;
-    E temp = data[start];
-    data[start] = null;
-    if (start == data.length-1){
-      start = 0;
-    }else{
-      start ++;
-    }
+    E temp = data[start+1];
+    data[start+1] = null;
+    start ++;
     return temp;
   }
 
   public E removeLast(){
     size --;
-    E temp = data[end];
-    data[end] = null;
-    if (end == 0){
-      end = data.length-1;
-    }else{
-      end --;
-    }
+    E temp = data[end-1];
+    data[end-1] = null;
+    end --;
     return temp;
   }
 
   public E getFirst(){
-    return data[start];
+    if (start == data.length-1){
+      return data[0];
+    }
+    return data[start+1];
   }
 
   public E getLast(){
-    return data[end];
+    if (end == 0){
+      return data[data.length-1];
+    }
+    return data[end-1];
   }
 }

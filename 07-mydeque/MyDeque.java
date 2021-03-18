@@ -27,7 +27,13 @@ public class MyDeque<E>{
   }
 
   public void addFirst(E element){
-
+    if (start == 0){
+      data[data.length-1] = element;
+      start = data.length-1;
+    }else{
+      data[start-1] = element;
+      start --;
+    }
   }
 
   public void addLast(E element){

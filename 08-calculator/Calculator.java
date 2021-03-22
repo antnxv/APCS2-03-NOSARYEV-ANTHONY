@@ -6,22 +6,31 @@ public class Calculator{
     Scanner eq = new Scanner(s);
     while (eq.hasNext()){
       String token = eq.next();
-      switch (token){
-        case "+": st.push(st.pop() + st.pop());
-                  break;
-        case "-": st.push(-st.pop() + st.pop());
-                  break;
-        case "*": st.push(st.pop() * st.pop());
-                  break;
-        case "/": st.push(1.0/(st.pop() / st.pop()));
-                  break;
-        case "%": double temp = st.pop();
-                  st.push(st.pop() % temp);
-                  break;
-        default:  st.push(Double.parseDouble(token));
-                  break;
+      try{
+        switch (token){
+          case "+": st.push(st.pop() + st.pop());
+                    break;
+          case "-": st.push(-st.pop() + st.pop());
+                    break;
+          case "*": st.push(st.pop() * st.pop());
+                    break;
+          case "/": st.push(1.0/(st.pop() / st.pop()));
+                    break;
+          case "%": double temp = st.pop();
+                    st.push(st.pop() % temp);
+                    break;
+          default:  st.push(Double.parseDouble(token));
+                    break;
+        }
+      }catch (EmptyStackException e){
+        throw new IllegalArgumentException("not enough operands");
       }
     }
-    return st.pop();
+    double ans = st.pop();
+    if (st.empty()){
+      return ans;
+    }else{
+      throw new IllegalArgumentException("too many operands");
+    }
   }
 }

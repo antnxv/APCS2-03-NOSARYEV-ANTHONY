@@ -9,13 +9,14 @@ public class Calculator{
       switch (token){
         case "+": st.push(st.pop() + st.pop());
                   break;
-        case "-": st.push(st.pop() - st.pop());
+        case "-": st.push(-st.pop() + st.pop());
                   break;
         case "*": st.push(st.pop() * st.pop());
                   break;
-        case "/": st.push(st.pop() / st.pop());
+        case "/": st.push(1.0/(st.pop() / st.pop()));
                   break;
-        case "%": st.push(st.pop() % st.pop());
+        case "%": double temp = st.pop();
+                  st.push(st.pop() % temp);
                   break;
         default:  st.push(Double.parseDouble(token));
                   break;

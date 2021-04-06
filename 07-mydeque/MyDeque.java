@@ -6,7 +6,7 @@ public class MyDeque<E>{
 
   public MyDeque(){
     @SuppressWarnings("unchecked")
-    E[] d = (E[]) new Object[51];
+    E[] d = (E[]) new Object[50];
     data = d;
     start = 1;
     end = size = 0;

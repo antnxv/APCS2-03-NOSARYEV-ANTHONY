@@ -1,6 +1,7 @@
 import java.util.*;
 public class BurnTrees{
   private int[][]map;
+  private Frontier frontier;
   private int ticks;
   private static int TREE = 2;
   private static int FIRE = 1;
@@ -26,12 +27,7 @@ public class BurnTrees{
 
   //Determine if the simulation is still burning
   public boolean done(){
-    for(int r = 0; r < map.length; r++){
-      for(int c = 0; c < map[r].length; c ++){
-        if (map[r][c] == FIRE) return false;
-      }
-    }
-    return true;
+    return frontier.size() == 0;
   }
 
   //Advances round (contains all core logic)

@@ -18,6 +18,7 @@ public class BurnTrees{
   //Initialize the simulation.
   public BurnTrees(int width,int height, double density){
     map = new int[height][width];
+    frontier = new Frontier();
     for(int r=0; r<map.length; r++ )
       for(int c=0; c<map[r].length; c++ )
         if(Math.random() < density)
@@ -39,10 +40,26 @@ public class BurnTrees{
       int r = spot[0];
       int c = spot[1];
       map[r][c] = ASH;
-      if (r > 0 && map[r-1][c] == TREE) map[r-1][c] = FIRE;
-      if (r < map.length-1 && map[r+1][c] == TREE) map[r+1][c] = FIRE;
-      if (c > 0 && map[r][c-1] == TREE) map[r][c-1] = FIRE;
-      if (c < map[r].length-1 && map[r][c+1] == TREE) map[r][c+1] = FIRE;
+      if (r > 0 && map[r-1][c] == TREE){
+        map[r-1][c] = FIRE;
+        int[] f = {r-1, c};
+        frontier.add(f);
+      }
+      if (r < map.length-1 && map[r+1][c] == TREE){
+        map[r+1][c] = FIRE;
+        int[] f = {r+1, c};
+        frontier.add(f);
+      }
+      if (c > 0 && map[r][c-1] == TREE){
+        map[r][c-1] = FIRE;
+        int[] f = {r, c-1};
+        frontier.add(f);
+      }
+      if (c < map[r].length-1 && map[r][c+1] == TREE){
+        map[r][c+1] = FIRE;
+        int[] f = {r, c+1};
+        frontier.add(f);
+      }
     }
     ticks ++;
   }
@@ -52,7 +69,6 @@ public class BurnTrees{
     for(int i = 0; i < map.length; i++){
       if(map[i][0]==TREE){
         int[] f = {i, 0};
-        System.out.println(f);
         frontier.add(f);
         map[i][0]=FIRE;
       }

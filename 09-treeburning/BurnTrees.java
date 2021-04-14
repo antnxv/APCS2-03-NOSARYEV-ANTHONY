@@ -32,26 +32,19 @@ public class BurnTrees{
 
   //Advances round (contains all core logic)
   public void tick(){
-    int[][] nmap = new int[map.length][map[0].length];
-    for(int r = 0; r < nmap.length; r ++){
-      for(int c = 0; c < nmap[r].length; c ++){
-        if (map[r][c] == FIRE || map[r][c] == ASH){
-          nmap[r][c] = ASH;
-          continue;
-        }else if (map[r][c] == TREE){
-          if (r > 0 && map[r-1][c] == FIRE ||
-            r < map.length-1 && map[r+1][c] == FIRE ||
-            c > 0 && map[r][c-1] == FIRE ||
-            c < map[r].length-1 && map[r][c+1] == FIRE){
-            nmap[r][c] = FIRE;
-          }else{
-            nmap[r][c] = TREE;
-          }
-        }
-      }
+    int s = frontier.size();
+    while (s > 0){
+      s--;
+      int[] spot = frontier.remove();
+      int r = spot[0];
+      int c = spot[1];
+      map[r][c] = ASH;
+      if (r > 0 && map[r-1][c] == TREE) map[r-1][c] = FIRE;
+      if (r < map.length-1 && map[r+1][c] == TREE) map[r+1][c] = FIRE;
+      if (c > 0 && map[r][c-1] == TREE) map[r][c-1] = FIRE;
+      if (c < map[r].length-1 && map[r][c+1] == TREE) map[r][c+1] = FIRE;
     }
-    map = nmap;
-    ticks++;
+    ticks ++;
   }
 
   //Sets the trees in the left column of the forest on fire

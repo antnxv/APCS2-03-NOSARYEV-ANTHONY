@@ -1,7 +1,7 @@
 import java.util.*;
 public class BurnTrees{
   private int[][]map;
-  private Frontier frontier;
+  private Queue<int[]> frontier;
   private int ticks;
   private static int TREE = 2;
   private static int FIRE = 1;
@@ -18,7 +18,7 @@ public class BurnTrees{
   //Initialize the simulation.
   public BurnTrees(int width,int height, double density){
     map = new int[height][width];
-    frontier = new Frontier();
+    frontier = new ArrayDeque<int[]>();
     for(int r=0; r<map.length; r++ )
       for(int c=0; c<map[r].length; c++ )
         if(Math.random() < density)
@@ -151,6 +151,7 @@ public class BurnTrees{
     }
     BurnTrees b = new BurnTrees(WIDTH,HEIGHT,DENSITY);
 
+    //System.out.println(b.run());
     System.out.println(b.animate(DELAY));//animate all screens and print the final answer
     //System.out.println(b.outputAll());//print all screens and the final answer
   }

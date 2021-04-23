@@ -32,7 +32,12 @@ public class MyHeap{
   }
 
   public static void heapsort(int[] data){
-
+    buildHeap(data);
+    int size = data.length;
+    while (size > 0){
+      remove(data, size);
+      size --;
+    }
   }
 }
 // children: 2n+1 (left) and 2n+2 (right)

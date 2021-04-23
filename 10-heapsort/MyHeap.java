@@ -20,6 +20,14 @@ public class MyHeap{
       index --;
     }
   }
+
+  private static void remove(int[] data, int size){
+
+  }
+
+  public static void heapsort(int[] data){
+    
+  }
 }
 // children: 2n+1 (left) and 2n+2 (right)
 // parent: (n-1)//2 or just (n-1)/2 since ints always floor divide

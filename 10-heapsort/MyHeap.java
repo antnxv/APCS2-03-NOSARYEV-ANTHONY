@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class MyHeap{
   private static void pushDown(int[] data, int size, int index){
     int ni;
@@ -22,11 +24,15 @@ public class MyHeap{
   }
 
   private static void remove(int[] data, int size){
-
+    int temp = data[0];
+    data[0] = data[size-1];
+    data[size-1] = temp;
+    size --;
+    pushDown(data, size, 0);
   }
 
   public static void heapsort(int[] data){
-    
+
   }
 }
 // children: 2n+1 (left) and 2n+2 (right)

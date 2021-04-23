@@ -1,13 +1,11 @@
 public class MyHeap{
   private static void pushDown(int[] data, int size, int index){
     int ni;
-    if (2*index+2 == size && data[2*index+1] > data[index]){
+    if (2*index+2 == size && data[2*index+1] > data[index])
       ni = 2*index+1;
-    }
     else if (2*index+2 < size &&
-      (data[2*index+1] > data[index] || data[2*index+2] > data[index])){
+      (data[2*index+1] > data[index] || data[2*index+2] > data[index]))
       ni = (data[2*index+1] > data[2*index+2]) ? 2*index+1 : 2*index+2;
-    }
     else return;
     int temp = data[ni];
     data[ni] = data[index];

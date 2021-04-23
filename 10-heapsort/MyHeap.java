@@ -4,8 +4,8 @@ public class MyHeap{
     if (2*index+2 == size && data[2*index+1] > data[index]){
       ni = 2*index+1;
     }
-    else if (2*index+1 < size && data[2*index+1] > data[index]
-      || 2*index+2 < size && data[2*index+2] > data[index]){
+    else if (2*index+2 < size &&
+      (data[2*index+1] > data[index] || data[2*index+2] > data[index])){
       ni = (data[2*index+1] > data[2*index+2]) ? 2*index+1 : 2*index+2;
     }
     else return;
@@ -17,9 +17,6 @@ public class MyHeap{
 
   public static void buildHeap(int data[]){
     int index = data.length-1;
-    while (index > 0 && Math.log(index+2)/Math.log(2) % 1.0 != 0.0){
-      index --; // see bottom note
-    }
     while (index >= 0){
       pushDown(data, data.length, index);
       index --;

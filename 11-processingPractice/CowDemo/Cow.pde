@@ -40,7 +40,16 @@ public class Cow {
       fill(255);
       textSize(15);
       text("DX: "+dx+"\nDY: "+dy,x+radius+5,y);
-      
+      fill(0);
+      ellipse(x-radius/2, y-radius/8, radius/3, radius/3);
+      ellipse(x+radius/2, y-radius/8, radius/3, radius/3);
+      if (!colliding){
+        strokeWeight(radius/10);
+        stroke(0);
+        noFill();
+        arc(x, y+radius/6, radius, 3*radius/4, PI/6, 5*PI/6); 
+        endShape();
+      }
     }
     
   }

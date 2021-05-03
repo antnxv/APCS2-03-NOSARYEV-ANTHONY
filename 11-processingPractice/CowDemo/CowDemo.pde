@@ -10,6 +10,7 @@ void draw() {
   background(0);
   for (Cow c : particles) {
     c.move();
+    c.collide(particles);
     c.display();
   }
   fill(255);

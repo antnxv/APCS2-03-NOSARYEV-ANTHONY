@@ -32,12 +32,8 @@ public class Cow {
   }
 
   void click(){
-    selected = !selected;
-    //if (dist(mouseX, mouseY, x, y) < radius){
-    //  radius = random(60)+20;
-    //  c = color(random(255), random(255), random(255));
-    //}
-    //if the mouseX and mouseY are touching this cow, change the cow somehow.
+    if (dist(mouseX, mouseY, x, y) < radius)
+      selected = !selected;
   }
   
   void collide(ArrayList<Cow> others){

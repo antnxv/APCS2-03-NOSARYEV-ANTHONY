@@ -31,6 +31,10 @@ public class Cow {
   }
   
   void turn(float angle) {
+    float v = dist(0, 0, dx, dy);
+    angle -= degrees(atan2(dy,dx));
+    dx = v * cos(radians(-angle));
+    dy = v * sin(radians(-angle));
   }
   
   void changeSpeed(float dv){
@@ -46,7 +50,7 @@ public class Cow {
     if (selected){
       fill(255);
       textSize(15);
-      text("DX: "+dx+"\nDY: "+dy,x+radius+5,y);
+      text("DX: "+dx+"\nDY: "+dy+"\nA: "+degrees(atan2(-dy,dx)),x+radius+5,y);
       fill(0);
       ellipse(x-radius/2, y-radius/8, radius/3, radius/3);
       ellipse(x+radius/2, y-radius/8, radius/3, radius/3);
@@ -64,6 +68,7 @@ public class Cow {
   void click(){
     if (dist(mouseX, mouseY, x, y) < radius)
       selected = !selected;
+    //turn(30);
   }
   
   void collide(ArrayList<Cow> others){

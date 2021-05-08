@@ -38,6 +38,9 @@ public class Cow {
   }
   
   void changeSpeed(float dv){
+    float a = atan2(dy,dx);
+    dx += dv * cos(a);
+    dy += dv * sin(a);
   }
   
   void display() {
@@ -50,7 +53,7 @@ public class Cow {
     if (selected){
       fill(255);
       textSize(15);
-      text("DX: "+dx+"\nDY: "+dy+"\nA: "+degrees(atan2(-dy,dx)),x+radius+5,y);
+      text("DX: "+dx+"\nDY: "+dy+"\nV: "+dist(0, 0, dx, dy),x+radius+5,y);
       fill(0);
       ellipse(x-radius/2, y-radius/8, radius/3, radius/3);
       ellipse(x+radius/2, y-radius/8, radius/3, radius/3);
@@ -69,6 +72,7 @@ public class Cow {
     if (dist(mouseX, mouseY, x, y) < radius)
       selected = !selected;
     //turn(30);
+    //changeSpeed(2);
   }
   
   void collide(ArrayList<Cow> others){

@@ -57,7 +57,7 @@ void keyPressed() { // added some bonus funcs using convent keys
                 c.turn(-22.5);
               break;
     case '_': for (Cow c : particles) // shift+-
-                if (sqrt(pow(c.dx, 2)+pow(c.dy, 2)) > 1)
+                if (dist(0, 0, c.dx, c.dy) > 1)
                   c.changeSpeed(-1);
               break;
     case '+': for (Cow c : particles) // shift+=

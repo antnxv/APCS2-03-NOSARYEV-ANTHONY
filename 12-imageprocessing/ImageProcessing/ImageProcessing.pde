@@ -15,7 +15,7 @@ public class Kernel {
       for (int c = -bound; c <= bound; c ++)
         for (int r = -bound; r <= bound; r ++){
           rgb[0] += kernel[c+bound][r+bound] * red(img.get(x+c, y+r)); // red
-          rgb[1] += kernel[c+bound][r+bound] * green(img.get(x+c, y+r)); // greeb
+          rgb[1] += kernel[c+bound][r+bound] * green(img.get(x+c, y+r)); // green
           rgb[2] += kernel[c+bound][r+bound] * blue(img.get(x+c, y+r)); // blue
         }
       return color(rgb[0], rgb[1], rgb[2]);

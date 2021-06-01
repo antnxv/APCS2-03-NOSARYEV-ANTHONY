@@ -40,7 +40,7 @@ void draw(){
 }
 
 void settings(){
-  String path = "redcar.jpg";
+  String path = "data/redcar.jpg";
   source = loadImage(path);
   result = loadImage(path);
   size(source.width, 2*source.height);
